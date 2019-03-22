@@ -1,0 +1,73 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="ids-button">
+  <template>
+      <style>
+          :host {
+            display: inline-block;
+
+          }
+          button{
+            color:white;
+            border-radius:5px;
+            padding:5px 10px 5px 10px;
+            font-size:.8rem;
+            background:var(--ids-button-color, rgba(0,0,0,0));
+            stroke:var(--ids-button-add-color,currentcolor);
+          }
+          :host([action="add"]) button{
+            background:var(--ids-button-add-color,currentcolor);
+          }
+          :host([action="edit"]) button{
+            background:var(--ids-button-edit-color,currentcolor);
+          }
+          :host([action="delete"]) button{
+            background:var(--ids-button-delete-color,currentcolor);
+          }
+          :host([action="search"]) button{
+            background:var(--ids-button-search-color,currentcolor);
+          }
+          :host([action="cancel"]) button{
+            background:var(--ids-button-cancel-color,currentcolor);
+          }
+          :host([action="accept"]) button{
+            background:var(--ids-button-accept-color,currentcolor);
+          }
+          :host([action="save"]) button{
+            background:var(--ids-button-save-color,currentcolor);
+          }
+        </style>
+
+    <button><slot></slot></button>
+  </template>
+
+  <script>
+      class IdsButton extends Polymer.Element {
+        static get is() { return 'ids-button'; }
+        static get properties() {
+          return {
+            action: {
+              type: String,
+              reflectToAttribute:true,
+            },
+          };
+        }
+       constructor() {
+       super();
+     }
+     actionEvent(e){
+       let action=this.dispatchEvent(new CustomEvent('btn-action',
+       {detail:this.action,bubbles:true,composed:true}));
+     }
+
+     //
+     ready() {
+       super.ready();
+       this.addEventListener('click', this.actionEvent.bind(this));
+      }
+   
+    }
+   
+    customElements.define(IdsButton.is, IdsButton);
+  </script>
+</dom-module>

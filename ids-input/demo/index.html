@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>ids-input demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../ids-input.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <!--<div class="vertical-section-container centered">
+      <h3>Basic ids-input demo</h3>
+      <demo-snippet>
+        <template>
+          <ids-input></ids-input>
+        </template>
+      </demo-snippet>√
+      -->
+
+      <iron-input bind-value="{{bindValue}}" type="email" >
+          <input value="{{myValue::input}}">  </input>
+      </iron-input>
+
+      <body>
+          <div class="vertical-section-container centered">
+            <h4>Basic inputs</h4>
+            <demo-snippet class="centered-demo">
+              <template>
+                <iron-input><input placeholder="type=date" type="date"></iron-input>
+                <iron-input><input placeholder="type=number" type="number"></iron-input>
+                <iron-input><input placeholder="disabled" disabled></iron-input>
+              </template>
+            </demo-snippet>
+        
+            <h4>Updating the iron-input's value</h4>
+            <demo-snippet>
+              <template>
+                <dom-bind>
+                  <template>
+                    <iron-input bind-value="{{bindValue}}" id="input1"><input value="{{value::input}}"></iron-input>
+                    <p>bind to the iron-input's <code>bind-value</code>: {{bindValue}}</p>
+                    <p>bind to the distributed input's <code>value::input</code>: {{value}}</p>
+                    <button onclick="input1.bindValue='pineapple'">Set bindValue to 'pineapple'</button>
+                  </template>
+                </dom-bind>
+              </template>
+            </demo-snippet>
+        
+
+
+       
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+
+<dom-module id="ids-input">
+    <template>
+        <style>
+            :host {
+                display:block;
+                font-size: 10px;
+            }
+            :host b {
+                color: rgb(219, 7, 7);
+            } 
+
+            :host([pressed]) b {
+                color: rgb(1, 100, 5);
+            } 
+            label, p {
+                top: 16px;
+                left: 0;
+                font-size: 16px;
+                color: #9098A9;
+                font-weight: 500;
+                transform-origin: 0 0;
+                transition: all .2s ease;
+            }
+            input {
+                -webkit-appearance: none;
+                width: 100%;
+                border: 0;
+                font-family: inherit;
+                padding: 10mpx 0;
+                font-size: 16px;
+                border-bottom: 1px solid navy;
+                background: none;
+                border-radius: 0;
+            }
+
+        </style>
+        <label for="[[title]]">[[title]]</label>
+        <!-- <input type="[[typeInput]]" name="[[name]]" id="[[name]]" value="{{clave::input}}"> -->
+        <input type="[[type]]" name="[[name]]" id="[[name]]" on-change="validar" on-blur="validar">
+        <b pressed>{{setCustomValidity}}</b>
+
+    </template>
+    <script>
+        class IdsInput extends Polymer.Element {
+
+            static get is() {
+                return 'ids-input';
+            }
+
+            static get properties() {
+                return {
+                    type: {
+                        type: String,
+                    },
+                    title: {
+                        type: String,
+                    },
+                    name: {
+                        type: String,
+
+                    },
+                    setCustomValidity: {
+                        type: String,
+                        value: '',
+                        reflectToAttribute: true
+                    },
+                    pressed: {
+                        type: Boolean,
+                        notify: true,
+                        reflectToAttribute: true,
+                        value: false
+                    }
+                }
+            }
+
+            constructor() {
+                super();
+            }
+
+            validar() {
+
+                let element = (this.shadowRoot.querySelector(`#${this.name}`).value);
+                if (element == '') { 
+                    this.setCustomValidity = `${this.title} es requerido.`;
+                    this.pressed = false;
+                } else {
+                    this.setCustomValidity = 'ok';
+                    this.pressed = true;
+                }
+
+                let action = this.dispatchEvent(new CustomEvent('onChangeInput', {
+                    detail: {
+                        name: this.name,
+                        value: element,
+                        isValid: this.pressed
+                    },
+                    bubbles: true,
+                    composed: true
+                }));
+            }
+
+        }
+        window.customElements.define(IdsInput.is, IdsInput);
+    </script>
+
+</dom-module>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>ids-button demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../ids-button.html">
+
+    <custom-style>
+        <style >
+            html{
+            --ids-button-add-color:rgb(243, 93, 33);
+            --ids-button-edit-color:rgb(58, 208, 228);
+            --ids-button-delete-color:rgb(0, 0, 0);
+            --ids-button-search-color:#ffc107;
+            --ids-button-cancel-color:#e90a0a;
+            --ids-button-accept-color:#653cb3;
+            --ids-button-save-color:rgb(36, 185, 68);
+          }
+            </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic ids-button demo</h3>
+      <demo-snippet>
+        <template>
+            <ids-button action="add">Agregar</ids-button>
+            <ids-button action="edit">Editar</ids-button>
+            <ids-button action="delete">Eliminar</ids-button>
+            <ids-button action="save">Guardar</ids-button>
+            <ids-button action="search">Buscar</ids-button>
+            <ids-button action="accept">Aceptar</ids-button>
+            <ids-button action="cancel">Cancelar</ids-button>
+        </template>
+      </demo-snippet>
+    </div>
+  
+
+  </body>
+</html>
